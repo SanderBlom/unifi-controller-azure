@@ -45,9 +45,5 @@ resource "azurerm_container_group" "unifi" {
       storage_account_key = data.azurerm_storage_account.access_key.primary_access_key
     } */
   }
-    lifecycle {
-      replace_triggered_by = [
-      null_resource.always_run
-    ]
-  }
+
 }
