@@ -35,9 +35,3 @@ variable "vnet_RG" {
   description = "Name of the vnets resource group"
   type        = string
 }
-
-variable "install_token" {
-  description = "Token used when installing the application"
-  type        = string
-  default     = "thisisnotavalidtokenpleaseprovideoneifyoudoafreshinstall"
-}
