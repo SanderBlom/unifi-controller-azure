@@ -1,4 +1,4 @@
-resource "azurerm_container_group" "example" {
+resource "azurerm_container_group" "unifi" {
   name                = "${var.project_name}"
   location            = var.location
   resource_group_name = data.azurerm_resource_group.deployment.name
@@ -37,12 +37,17 @@ resource "azurerm_container_group" "example" {
       protocol = "TCP"
     }
 
-    volume {
+/*     volume {
       name         = "unifistorage"
       mount_path = "/config"
       storage_account_name = azurerm_storage_account.unifi_sa.name
       share_name = azurerm_storage_share.unifi_share.name
       storage_account_key = data.azurerm_storage_account.access_key.primary_access_key
-    }
+    } */
+  }
+    lifecycle {
+      replace_triggered_by = [
+      null_resource.always_run
+    ]
   }
 }
