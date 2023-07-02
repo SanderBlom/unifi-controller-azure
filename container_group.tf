@@ -97,7 +97,7 @@ resource "azurerm_container_group" "example" {
     }
 
     volume {
-      name         = "unifi_storage"
+      name         = "unifistorage"
       mount_path = "/config"
       storage_account_name = azurerm_storage_account.unifi_sa.name
       share_name = azurerm_storage_share.unifi_share.name
