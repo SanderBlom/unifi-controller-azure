@@ -7,7 +7,7 @@ resource "azurerm_container_group" "example" {
   os_type             = "Linux"
 
   container {
-    name   = "hello-world"
+    name   = "unifi-controller"
     image  = "registry.hub.docker.com/linuxserver/unifi-controller:latest"
     cpu    = 1
     memory = 2
@@ -16,12 +16,6 @@ resource "azurerm_container_group" "example" {
     ports {
       port     = 53
       protocol = "TCP"
-    }
-
-    # Used for DNS. This is required for Guest Portal redirection, downloading updates, and remote access.
-    ports {
-      port     = 53
-      protocol = "UDP"
     }
 
     # Used for STUN.
