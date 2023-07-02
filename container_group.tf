@@ -101,6 +101,7 @@ resource "azurerm_container_group" "example" {
       mount_path = "/config"
       storage_account_name = azurerm_storage_account.unifi_sa.name
       share_name = azurerm_storage_share.unifi_share.name
+      storage_account_key = data.azurerm_storage_account.access_key.primary_access_key
     }
   }
 }
