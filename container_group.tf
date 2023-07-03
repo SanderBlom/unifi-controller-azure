@@ -53,6 +53,7 @@ resource "azurerm_container_group" "unifi" {
       log_type      = "ContainerInstanceLogs"
       workspace_id  = azurerm_log_analytics_workspace.unifi_logs.workspace_id
       workspace_key = azurerm_log_analytics_workspace.unifi_logs.primary_shared_key
+      metadata      = null
     }
   }
 
