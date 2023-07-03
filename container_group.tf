@@ -6,17 +6,19 @@ resource "azurerm_container_group" "unifi" {
   subnet_ids          = [data.azurerm_subnet.unifi_subnet.id]
   os_type             = "Linux"
 
-  log_analytics {
-    log_type     = "ContainerInstanceLogs"
-    workspace_id = data.azurerm_log_analytics_workspace.workspace_id
-    workspace_key = data.azurerm_log_analytics_workspace.primary_shared_key
-  }
+
 
   container {
     name   = "unifi-controller"
     image  = "registry.hub.docker.com/linuxserver/unifi-controller:latest"
     cpu    = 1
     memory = 2
+
+    log_analytics {
+      log_type      = "ContainerInstanceLogs"
+      workspace_id  = data.azurerm_log_analytics_workspace.workspace_id
+      workspace_key = data.azurerm_log_analytics_workspace.primary_shared_key
+    }
 
     ports {
       port     = 3478
