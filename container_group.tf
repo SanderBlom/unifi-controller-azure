@@ -3,7 +3,7 @@ resource "azurerm_container_group" "unifi" {
   location            = var.location
   resource_group_name = data.azurerm_resource_group.deployment.name
   ip_address_type     = "Private"
-  subnet_ids          = data.azurerm_subnet.unifi_subnet.id
+  subnet_ids          = [data.azurerm_subnet.unifi_subnet.id]
   dns_name_label      = "aci-label"
   os_type             = "Linux"
 
