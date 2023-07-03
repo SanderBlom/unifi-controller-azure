@@ -19,7 +19,7 @@ resource "azurerm_container_group" "unifi" {
       protocol = "UDP"
     }
 
-/*     ports {
+    ports {
       port     = 10001
       protocol = "UDP"
     }
@@ -37,7 +37,7 @@ resource "azurerm_container_group" "unifi" {
     ports {
       port     = 8880
       protocol = "TCP"
-    } */
+    }
 
     volume {
       name                 = "unifistorage"
@@ -48,7 +48,7 @@ resource "azurerm_container_group" "unifi" {
     }
   }
 
-/*   diagnostics {
+  /*   diagnostics {
     log_analytics {
       log_type      = "ContainerInsights"
       workspace_id  = azurerm_log_analytics_workspace.unifi_logs.workspace_id
