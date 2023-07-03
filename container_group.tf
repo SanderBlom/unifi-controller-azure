@@ -50,7 +50,7 @@ resource "azurerm_container_group" "unifi" {
 
   diagnostics {
     log_analytics {
-      log_type      = "ContainerInstanceLogs"
+      log_type      = "ContainerInsights"
       workspace_id  = azurerm_log_analytics_workspace.unifi_logs.workspace_id
       workspace_key = azurerm_log_analytics_workspace.unifi_logs.primary_shared_key
       metadata      = null
