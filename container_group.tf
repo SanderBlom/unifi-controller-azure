@@ -1,8 +1,9 @@
 resource "azurerm_container_group" "unifi" {
-  name                = "${var.project_name}"
+  name                = var.project_name
   location            = var.location
   resource_group_name = data.azurerm_resource_group.deployment.name
-  ip_address_type     = "Public"
+  ip_address_type     = "Private"
+  subnet_ids          = data.azurerm_subnet.unifi_subnet.id
   dns_name_label      = "aci-label"
   os_type             = "Linux"
 
@@ -12,12 +13,12 @@ resource "azurerm_container_group" "unifi" {
     cpu    = 1
     memory = 2
 
-/*     ports {
+    ports {
       port     = 3478
       protocol = "UDP"
     }
 
-    ports {
+    /*     ports {
       port     = 10001
       protocol = "UDP"
     }
@@ -35,9 +36,9 @@ resource "azurerm_container_group" "unifi" {
     ports {
       port     = 8880
       protocol = "TCP"
-    } */
+    }  */
 
-/*     volume {
+    /*     volume {
       name         = "unifistorage"
       mount_path = "/config"
       storage_account_name = azurerm_storage_account.unifi_sa.name
