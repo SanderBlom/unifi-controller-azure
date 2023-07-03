@@ -4,16 +4,16 @@ resource "azurerm_container_group" "unifi" {
   resource_group_name = data.azurerm_resource_group.deployment.name
   ip_address_type     = "Public"
   #subnet_ids          = [data.azurerm_subnet.unifi_subnet.id]
-  os_type             = "Linux"
+  os_type = "Linux"
 
 
 
   container {
-    name   = "unifi-controller"
-    image  = "registry.hub.docker.com/jacobalberty/unifi:latest"
-    cpu    = 1
-    memory = 2
-    commands = ["--init"] 
+    name     = "unifi-controller"
+    image    = "lscr.io/linuxserver/unifi-controller:latest"
+    cpu      = 1
+    memory   = 2
+    commands = ["--init"]
 
     ports {
       port     = 3478
@@ -39,10 +39,15 @@ resource "azurerm_container_group" "unifi" {
       port     = 8880
       protocol = "TCP"
     }
+    environment_variables {
+      PUID = 1000
+      PGID = 1000
+      TZ   = "Etc/UTC"
+    }
 
     volume {
       name                 = "unifistorage"
-      mount_path           = "/unifi/"
+      mount_path           = "/config"
       storage_account_name = azurerm_storage_account.unifi_sa.name
       share_name           = azurerm_storage_share.unifi_share.name
       storage_account_key  = data.azurerm_storage_account.access_key.primary_access_key
