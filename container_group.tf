@@ -17,7 +17,7 @@ resource "azurerm_container_group" "unifi" {
       protocol = "UDP"
     }
 
-    /*     ports {
+    ports {
       port     = 10001
       protocol = "UDP"
     }
@@ -35,7 +35,7 @@ resource "azurerm_container_group" "unifi" {
     ports {
       port     = 8880
       protocol = "TCP"
-    }  */
+    }
 
     /*     volume {
       name         = "unifistorage"
