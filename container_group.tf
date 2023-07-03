@@ -6,8 +6,8 @@ resource "azurerm_container_group" "unifi" {
   os_type = "Linux"
 
   container {
-    name   = "unifi-controller"
-    image  = "lscr.io/linuxserver/unifi-controller:latest"
+    name   = "unifi"
+    image  = "linuxserver/unifi-controller:latest"
     cpu    = 1
     memory = 2
 
