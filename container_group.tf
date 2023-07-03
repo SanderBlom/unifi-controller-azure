@@ -6,13 +6,11 @@ resource "azurerm_container_group" "unifi" {
   #subnet_ids          = [data.azurerm_subnet.unifi_subnet.id]
   os_type = "Linux"
 
-
-
   container {
-    name     = "unifi-controller"
-    image    = "lscr.io/linuxserver/unifi-controller:latest"
-    cpu      = 1
-    memory   = 2
+    name   = "unifi-controller"
+    image  = "lscr.io/linuxserver/unifi-controller:latest"
+    cpu    = 1
+    memory = 2
     ports {
       port     = 3478
       protocol = "UDP"
@@ -38,7 +36,7 @@ resource "azurerm_container_group" "unifi" {
       protocol = "TCP"
     }
 
-/*     environment_variables = {
+    /*     environment_variables = {
       PUID = 1000
       PGID = 1000
       TZ   = "Etc/UTC"
@@ -46,7 +44,7 @@ resource "azurerm_container_group" "unifi" {
 
     volume {
       name                 = "unifistorage"
-      mount_path           = "/config"
+      mount_path           = "/config/"
       storage_account_name = azurerm_storage_account.unifi_sa.name
       share_name           = azurerm_storage_share.unifi_share.name
       storage_account_key  = data.azurerm_storage_account.access_key.primary_access_key
