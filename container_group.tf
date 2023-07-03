@@ -3,7 +3,6 @@ resource "azurerm_container_group" "unifi" {
   location            = var.location
   resource_group_name = data.azurerm_resource_group.deployment.name
   ip_address_type     = "Public"
-  #subnet_ids          = [data.azurerm_subnet.unifi_subnet.id]
   os_type = "Linux"
 
   container {
@@ -11,6 +10,7 @@ resource "azurerm_container_group" "unifi" {
     image  = "lscr.io/linuxserver/unifi-controller:latest"
     cpu    = 1
     memory = 2
+
     ports {
       port     = 3478
       protocol = "UDP"
@@ -36,11 +36,11 @@ resource "azurerm_container_group" "unifi" {
       protocol = "TCP"
     }
 
-    /*     environment_variables = {
+    environment_variables = {
       PUID = 1000
       PGID = 1000
       TZ   = "Etc/UTC"
-    } */
+    }
 
     volume {
       name                 = "unifistorage"
