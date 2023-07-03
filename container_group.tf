@@ -13,7 +13,7 @@ resource "azurerm_container_group" "unifi" {
     image  = "registry.hub.docker.com/jacobalberty/unifi:latest"
     cpu    = 1
     memory = 2
-    command = ["--init"] 
+    commands = ["--init"] 
 
     ports {
       port     = 3478
