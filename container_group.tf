@@ -41,20 +41,20 @@ resource "azurerm_container_group" "unifi" {
 
     volume {
       name                 = "unifistorage"
-      mount_path           = "/config"
+      mount_path           = "/unifi/"
       storage_account_name = azurerm_storage_account.unifi_sa.name
       share_name           = azurerm_storage_share.unifi_share.name
       storage_account_key  = data.azurerm_storage_account.access_key.primary_access_key
     }
   }
 
-  /*   diagnostics {
+  diagnostics {
     log_analytics {
       log_type      = "ContainerInsights"
       workspace_id  = azurerm_log_analytics_workspace.unifi_logs.workspace_id
       workspace_key = azurerm_log_analytics_workspace.unifi_logs.primary_shared_key
       metadata      = null
     }
-  } */
+  }
 
 }
