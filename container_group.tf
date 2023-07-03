@@ -13,8 +13,6 @@ resource "azurerm_container_group" "unifi" {
     image    = "lscr.io/linuxserver/unifi-controller:latest"
     cpu      = 1
     memory   = 2
-    commands = ["--init"]
-
     ports {
       port     = 3478
       protocol = "UDP"
