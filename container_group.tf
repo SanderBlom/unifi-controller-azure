@@ -2,15 +2,15 @@ resource "azurerm_container_group" "unifi" {
   name                = var.project_name
   location            = var.location
   resource_group_name = data.azurerm_resource_group.deployment.name
-  ip_address_type     = "Public"
-  #subnet_ids          = [data.azurerm_subnet.unifi_subnet.id]
+  ip_address_type     = "Private"
+  subnet_ids          = [data.azurerm_subnet.unifi_subnet.id]
   os_type             = "Linux"
 
 
 
   container {
     name   = "unifi-controller"
-    image  = "registry.hub.docker.com/linuxserver/unifi-controller:latest"
+    image  = "registry.hub.docker.com/jacobalberty/unifi:latest"
     cpu    = 1
     memory = 2
 
