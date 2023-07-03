@@ -10,7 +10,7 @@ resource "azurerm_container_group" "unifi" {
 
   container {
     name   = "unifi-controller"
-    image  = "linuxserver/unifi-controller:latest"
+    image  = "registry.hub.docker.com/linuxserver/unifi-controller:latest"
     cpu    = 1
     memory = 2
 
@@ -39,22 +39,22 @@ resource "azurerm_container_group" "unifi" {
       protocol = "TCP"
     } */
 
-     volume {
+    volume {
       name                 = "unifistorage"
-      mount_path           = "/config/"
+      mount_path           = "/config"
       storage_account_name = azurerm_storage_account.unifi_sa.name
       share_name           = azurerm_storage_share.unifi_share.name
       storage_account_key  = data.azurerm_storage_account.access_key.primary_access_key
-    } 
+    }
   }
 
-  diagnostics {
+/*   diagnostics {
     log_analytics {
       log_type      = "ContainerInsights"
       workspace_id  = azurerm_log_analytics_workspace.unifi_logs.workspace_id
       workspace_key = azurerm_log_analytics_workspace.unifi_logs.primary_shared_key
       metadata      = null
     }
-  }
+  } */
 
 }
