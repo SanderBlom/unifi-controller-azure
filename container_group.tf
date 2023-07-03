@@ -14,15 +14,6 @@ resource "azurerm_container_group" "unifi" {
     cpu    = 1
     memory = 2
 
-    diagnostics {
-      log_analytics {
-        log_type      = "ContainerInstanceLogs"
-        workspace_id  = data.azurerm_log_analytics_workspace.workspace_id
-        workspace_key = data.azurerm_log_analytics_workspace.primary_shared_key
-      }
-    }
-
-
     ports {
       port     = 3478
       protocol = "UDP"
@@ -54,6 +45,14 @@ resource "azurerm_container_group" "unifi" {
       storage_account_name = azurerm_storage_account.unifi_sa.name
       share_name           = azurerm_storage_share.unifi_share.name
       storage_account_key  = data.azurerm_storage_account.access_key.primary_access_key
+    }
+  }
+
+  diagnostics {
+    log_analytics {
+      log_type      = "ContainerInstanceLogs"
+      workspace_id  = data.azurerm_log_analytics_workspace.workspace_id
+      workspace_key = data.azurerm_log_analytics_workspace.primary_shared_key
     }
   }
 
