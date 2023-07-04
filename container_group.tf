@@ -1,9 +1,10 @@
 resource "azurerm_container_group" "unifi" {
-  name                = var.project_name
+  name                = "ci-${var.project_name}"
   location            = var.location
   resource_group_name = data.azurerm_resource_group.deployment.name
   ip_address_type     = "Public"
-  os_type = "Linux"
+  os_type             = "Linux"
+  commands = ["ln -s /config/run run"]
 
   container {
     name   = "unifi"
