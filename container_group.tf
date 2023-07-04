@@ -4,13 +4,14 @@ resource "azurerm_container_group" "unifi" {
   resource_group_name = data.azurerm_resource_group.deployment.name
   ip_address_type     = "Public"
   os_type             = "Linux"
-  commands = ["ln -s /config/run run"]
+
 
   container {
     name   = "unifi"
     image  = "linuxserver/unifi-controller:latest"
     cpu    = 1
     memory = 2
+    commands = ["ln -s /config/run run"]
 
     ports {
       port     = 3478
