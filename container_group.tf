@@ -8,7 +8,7 @@ resource "azurerm_container_group" "unifi" {
 
   container {
     name   = "unifi"
-    image  = "linuxserver/unifi-controller:latest"
+    image  = "jacobalberty/unifi:latest"
     cpu    = 1
     memory = 2
 
@@ -38,8 +38,6 @@ resource "azurerm_container_group" "unifi" {
     }
 
     environment_variables = {
-      PUID         = 1000
-      PGID         = 1000
       TZ           = "CET"
       S6_VERBOSITY = 3
     }
