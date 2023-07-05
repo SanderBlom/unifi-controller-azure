@@ -11,7 +11,6 @@ resource "azurerm_container_group" "unifi" {
     image  = "linuxserver/unifi-controller:latest"
     cpu    = 1
     memory = 2
-    commands = ["ln -s /config/run run"]
 
     ports {
       port     = 3478
@@ -39,9 +38,10 @@ resource "azurerm_container_group" "unifi" {
     }
 
     environment_variables = {
-      PUID = 1000
-      PGID = 1000
-      TZ   = "CET"
+      PUID         = 1000
+      PGID         = 1000
+      TZ           = "CET"
+      S6_VERBOSITY = 3
     }
 
     volume {
